@@ -2,6 +2,8 @@ package com.yanziting.basiclearning.learningreflect;
 
 import com.yanziting.web.WebApplication;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,8 @@ public class MyReflectDemoTest {
     private MyReflectDemo myReflectDemo;
 
     @Test
-    public void tryReflect() {
-        try {
-            myReflectDemo.tryReflect();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public void tryReflect()
+        throws NoSuchMethodException, IllegalAccessException, InstantiationException, NoSuchFieldException, InvocationTargetException, ClassNotFoundException {
+        myReflectDemo.tryReflect();
     }
 }
