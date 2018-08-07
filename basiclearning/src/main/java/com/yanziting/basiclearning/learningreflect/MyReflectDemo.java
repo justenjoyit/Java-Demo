@@ -1,21 +1,24 @@
-package com.example.demo;
-
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package com.yanziting.basiclearning.learningreflect;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
-public class DemoApplication {
+/**
+ * 反射Demo
+ *
+ * @author : Ziting.Yan
+ * @since : 2018-08-07-16-36
+ **/
+@Component
+public class MyReflectDemo {
 
-    public static void main(String[] args)
-        throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
-
+    public void tryReflect() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         //获得Class
-        Class cl = Class.forName("com.example.demo.A");
+        Class cl = Class.forName("com.yanziting.demo.A");
         System.out.println(cl.getName());
         Class cl2 = Sync.class;
         System.out.println(cl2.getName());

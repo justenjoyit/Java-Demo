@@ -1,4 +1,4 @@
-package com.yanziting.demo.learningenum;
+package com.yanziting.basiclearning.learningenum;
 
 import org.springframework.stereotype.Component;
 
@@ -46,45 +46,46 @@ public class MyEnumDemo {
                 break;
         }
     }
-}
 
-enum Week {
-    /**
-     * 周一
-     */
-    MONDAY("Monday"),
-    /**
-     * 周二
-     */
-    TUESDAY("Tuesday"),
-    /**
-     * 周三
-     */
-    WEDNESDAY("Wednesday"),
-    /**
-     * 周四
-     */
-    THURSDAY("Thursday"),
-    /**
-     * 周五
-     */
-    FRIDAY("Friday"),
-    /**
-     * 周六
-     */
-    SATURDAY("Saturday"),
-    /**
-     * 周日
-     */
-    SUNDAY("Sunday");
+    public enum Week {
+        /**
+         * 周一
+         */
+        MONDAY("Monday"),
+        /**
+         * 周二
+         */
+        TUESDAY("Tuesday"),
+        /**
+         * 周三
+         */
+        WEDNESDAY("Wednesday"),
+        /**
+         * 周四
+         */
+        THURSDAY("Thursday"),
+        /**
+         * 周五
+         */
+        FRIDAY("Friday"),
+        /**
+         * 周六
+         */
+        SATURDAY("Saturday"),
+        /**
+         * 周日
+         */
+        SUNDAY("Sunday");
 
-    private String value;
+        private String value;
 
-    Week(String value) {
-        this.value = value;
+        Week(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 
-    public String getValue() {
-        return value;
-    }
 }
