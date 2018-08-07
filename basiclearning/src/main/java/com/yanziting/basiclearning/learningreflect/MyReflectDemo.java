@@ -18,7 +18,7 @@ public class MyReflectDemo {
 
     public void tryReflect() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
         //获得Class
-        Class cl = Class.forName("com.yanziting.demo.A");
+        Class cl = Class.forName("com.yanziting.basiclearning.learningreflect.A");
         System.out.println(cl.getName());
         Class cl2 = Sync.class;
         System.out.println(cl2.getName());
