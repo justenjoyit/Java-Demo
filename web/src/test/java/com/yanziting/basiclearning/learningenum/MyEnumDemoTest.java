@@ -34,5 +34,6 @@ public class MyEnumDemoTest {
     @Test
     public void printDistinctWeek() {
         myEnumDemo.printDistinctWeek(Week.SUNDAY);
+        System.out.println("test");
     }
 }
