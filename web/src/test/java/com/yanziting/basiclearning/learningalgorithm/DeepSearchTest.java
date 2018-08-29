@@ -21,6 +21,7 @@ public class DeepSearchTest {
     @Test
     public void mainDeepSearch(){
         deepSearch.mainDeepSearch();
+        System.out.println("test");
     }
 
 }
