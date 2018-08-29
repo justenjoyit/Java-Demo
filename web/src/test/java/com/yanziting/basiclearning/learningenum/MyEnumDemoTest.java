@@ -35,5 +35,6 @@ public class MyEnumDemoTest {
     public void printDistinctWeek() {
         myEnumDemo.printDistinctWeek(Week.SUNDAY);
         System.out.println("test");
+        System.out.println("盐渍土是猪");
     }
 }
