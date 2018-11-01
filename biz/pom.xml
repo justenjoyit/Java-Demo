@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.yanziting</groupId>
-  <artifactId>web</artifactId>
+  <artifactId>biz</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>web</name>
+  <name>biz</name>
   <description>Demo project for Spring Boot</description>
 
   <parent>
@@ -37,27 +37,22 @@
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.20</version>
     </dependency>
 
     <dependency>
-      <groupId>com.yanziting</groupId>
-      <artifactId>basiclearning</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>15.0</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.yanziting</groupId>
-      <artifactId>biz</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
     <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
-      <version>1.2.47</version>
+      <groupId>org.apache.rocketmq</groupId>
+      <artifactId>rocketmq-client</artifactId>
+      <version>4.2.0</version>
     </dependency>
 
   </dependencies>
