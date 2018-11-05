@@ -1,5 +1,7 @@
 package com.yanziting.basiclearning.learningenum;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,12 +13,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyEnumDemo {
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     public void getWeek() {
         Week week = Week.SATURDAY;
         Week week1 = Week.valueOf("FRIDAY");
 
         System.out.println(week.getValue());
         System.out.println(week1.getValue());
+        logger.info("test");
     }
 
     public void printDistinctWeek(Week week) {
@@ -44,6 +49,7 @@ public class MyEnumDemo {
                 break;
             default:
                 break;
+
         }
     }
 
