@@ -1,0 +1,24 @@
+## 消费者的组名
+#apache.rocketmq.consumer.PushConsumer=PushConsumer
+#
+## 生产者的组名
+#apache.rocketmq.producer.producerGroup=Producer
+#
+## NameServer地址
+#apache.rocketmq.namesrvAddr=localhost:9876
+
+yanzt:
+    rocketmq:
+        namesrvAddr: localhost:9876
+        topics:
+          - ORDER   #下单
+          - SHIP    #发货
+          - RECEIPT #收货
+        producerGroups:
+          - orderProducerGroup
+          - shipProducerGroup
+          - receiptProducerGroup
+        consumerGroups:
+          - orderConsumerGroup
+          - shipConsumerGroup
+          - receiptConsumerGroup
