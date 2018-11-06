@@ -1,9 +1,12 @@
 package com.yanziting.biz.rocktmq;
 
+import com.yanziting.biz.rocktmq.producer.OrderProducer;
+import com.yanziting.biz.rocktmq.producer.ReceiptProducer;
+import com.yanziting.biz.rocktmq.producer.ShipProducer;
+
+
 import javax.annotation.Resource;
 
-import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,17 +18,16 @@ public class TestProducerImpl {
 
     @Resource
     private OrderProducer orderProducer;
-    @Autowired
-    private OrderConsumer orderConsumer;
-//    @Resource
-//    private DefaultMQPushConsumer pushConsumer;
+    @Resource
+    private ShipProducer shipProducer;
+    @Resource
+    private ReceiptProducer receiptProducer;
 
     public void send() throws Exception {
         for (int i = 0; i < 10; ++i) {
             orderProducer.sendMessage("order producer send message: " + i);
+            shipProducer.sendMessage("order producer send message: " + i);
+            receiptProducer.sendMessage("order producer send message: " + i);
         }
-    }
-
-    public void consume(){
     }
 }

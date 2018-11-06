@@ -1,12 +1,13 @@
 package com.yanziting.web.config;
 
 import com.yanziting.biz.rocktmq.OrderConsumer;
-import com.yanziting.biz.rocktmq.OrderProducer;
+import com.yanziting.biz.rocktmq.producer.OrderProducer;
+import com.yanziting.biz.rocktmq.producer.ReceiptProducer;
+import com.yanziting.biz.rocktmq.producer.ShipProducer;
 
 import java.util.List;
 
 import lombok.Data;
-import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
@@ -37,6 +38,24 @@ public class RocketMQConfiguration {
         orderProducer.setTopic(topics.get(0));
         orderProducer.setProducerGroup(producerGroups.get(0));
         return orderProducer;
+    }
+
+    @Bean(initMethod = "doStart", destroyMethod = "doShutdown")
+    public ShipProducer shipProducer() {
+        ShipProducer shipProducer = new ShipProducer();
+        shipProducer.setNamesrvAddr(namesrvAddr);
+        shipProducer.setTopic(topics.get(1));
+        shipProducer.setProducerGroup(producerGroups.get(1));
+        return shipProducer;
+    }
+
+    @Bean(initMethod = "doStart", destroyMethod = "doShutdown")
+    public ReceiptProducer receiptProducer() {
+        ReceiptProducer receiptProducer = new ReceiptProducer();
+        receiptProducer.setNamesrvAddr(namesrvAddr);
+        receiptProducer.setTopic(topics.get(2));
+        receiptProducer.setProducerGroup(producerGroups.get(2));
+        return receiptProducer;
     }
 
     @Bean(initMethod = "doStart",destroyMethod = "doShutdown")

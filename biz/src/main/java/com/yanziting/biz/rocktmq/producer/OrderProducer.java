@@ -1,4 +1,4 @@
-package com.yanziting.biz.rocktmq;
+package com.yanziting.biz.rocktmq.producer;
 
 import lombok.Setter;
 import org.apache.rocketmq.client.exception.MQBrokerException;
