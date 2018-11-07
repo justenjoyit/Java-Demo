@@ -20,8 +20,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class ProducerTest {
     @Resource
     private TestProducerImpl testProducer;
-    @Resource
-    private OrderConsumer orderConsumer;
 
     @Test
     public void test() throws Exception {

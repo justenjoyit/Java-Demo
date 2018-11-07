@@ -1,7 +1,6 @@
 package com.yanziting.biz.rocktmq.listener;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.List;
 
@@ -25,15 +24,10 @@ public class OrderBackMessageListener implements MessageListenerConcurrently {
         ConsumeConcurrentlyStatus status = ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         log.info("[{}] received messages", context.getMessageQueue().getTopic());
         for (MessageExt msg : msgs) {
-//            ByteArrayInputStream byteArray = new ByteArrayInputStream(msg.getBody());
-//            ObjectInputStream objectInputStream = null;
             try {
                 ByteArrayInputStream bis = new ByteArrayInputStream(msg.getBody());
                 ObjectInputStream ois = new ObjectInputStream(bis);
                 Object obj = ois.readObject();
-
-//                objectInputStream = new ObjectInputStream(byteArray);
-//                Object body  =  objectInputStream.readObject();
                 log.info("received message body {}", obj);
             } catch (Exception e) {
                 e.printStackTrace();
