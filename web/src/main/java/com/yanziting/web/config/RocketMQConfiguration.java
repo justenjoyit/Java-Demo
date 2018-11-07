@@ -1,11 +1,14 @@
 package com.yanziting.web.config;
 
-import com.yanziting.biz.rocktmq.OrderConsumer;
+import com.yanziting.biz.rocktmq.consumer.OrderConsumer;
+import com.yanziting.biz.rocktmq.listener.OrderBackMessageListener;
 import com.yanziting.biz.rocktmq.producer.OrderProducer;
 import com.yanziting.biz.rocktmq.producer.ReceiptProducer;
 import com.yanziting.biz.rocktmq.producer.ShipProducer;
 
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import lombok.Data;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -30,6 +33,9 @@ public class RocketMQConfiguration {
     private List<String> topics;
     private List<String> producerGroups;
     private List<String> consumerGroups;
+
+    @Resource
+    private OrderBackMessageListener orderBackMessageListener;
 
     @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
     public OrderProducer orderProducer(){
@@ -64,33 +70,35 @@ public class RocketMQConfiguration {
         orderConsumer.setNamesrvAddr(namesrvAddr);
         orderConsumer.setTopic(topics.get(0));
         orderConsumer.setConsumerGroup(consumerGroups.get(0));
-        orderConsumer.registerMessageListener(new MessageListenerConcurrently() {
-
-            @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
-                ConsumeConcurrentlyContext context) {
-                System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
-                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-            }
-        });
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(5000);
-
-                    try {
-                        orderConsumer.start();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }).start();
+        orderConsumer.setOrderBackMessageListener(orderBackMessageListener);
+//        orderConsumer.registerMessageListener(new MessageListenerConcurrently() {
+//
+//            @Override
+//            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs,
+//                ConsumeConcurrentlyContext context) {
+//                System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
+//                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+//            }
+//        });
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(5000);
+//
+//                    try {
+//                        orderConsumer.start();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//        }).start();
         return orderConsumer;
     }
 }

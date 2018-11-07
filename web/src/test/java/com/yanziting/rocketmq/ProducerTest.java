@@ -1,6 +1,6 @@
 package com.yanziting.rocketmq;
 
-import com.yanziting.biz.rocktmq.OrderConsumer;
+import com.yanziting.biz.rocktmq.consumer.OrderConsumer;
 import com.yanziting.biz.rocktmq.TestProducerImpl;
 import com.yanziting.web.WebApplication;
 
