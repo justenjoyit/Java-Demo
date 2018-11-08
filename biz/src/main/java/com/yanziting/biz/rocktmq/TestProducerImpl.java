@@ -38,7 +38,7 @@ public class TestProducerImpl {
                 .productIds(Lists.newArrayList(String.valueOf(i)))
                 .created(new Date())
                 .build();
-            orderProducer.sendMessage(orderMessage);
+            messageProducer.sendOrderMessage(orderMessage);
 //            shipProducer.sendMessage("order producer send message: " + i);
             receiptProducer.sendMessage("order producer send message: " + i);
         }

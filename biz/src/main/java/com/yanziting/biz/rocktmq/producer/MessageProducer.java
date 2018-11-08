@@ -28,7 +28,7 @@ public class MessageProducer {
     @Resource
     private ShipProducer shipProducer;
     public void sendOrderMessage(Object data) throws InterruptedException, IOException, RemotingException, MQClientException, MQBrokerException {
-        OrderMessageTask task = new OrderMessageTask(new OrderProducer(),data);
+        OrderMessageTask task = new OrderMessageTask(orderProducer,data);
         task.send();
     }
 
