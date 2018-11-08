@@ -1,6 +1,6 @@
 package com.yanziting.biz.rocktmq.task;
 
-import com.yanziting.biz.rocktmq.producer.ShipProducer;
+import com.yanziting.biz.rocktmq.producer.ReceiptProducer;
 
 import java.io.IOException;
 
@@ -11,20 +11,20 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 
 /**
  * @author : Ziting.Yan
- * @since : 2018-11-08-08-11
+ * @since : 2018-11-08-15-54
  **/
 @Slf4j
-public class ShipMessageTask {
-    private ShipProducer shipProducer;
+public class ReceiptMessageTask {
+
     private Object data;
+    private ReceiptProducer receiptProducer;
 
-
-    public ShipMessageTask(ShipProducer shipProducer,Object data){
-        this.shipProducer = shipProducer;
+    public ReceiptMessageTask(ReceiptProducer receiptProducer, Object data) {
+        this.receiptProducer = receiptProducer;
         this.data = data;
     }
 
     public void send() throws InterruptedException, IOException, RemotingException, MQClientException, MQBrokerException {
-        shipProducer.sendMessage(data);
+        receiptProducer.sendMessage(data);
     }
 }

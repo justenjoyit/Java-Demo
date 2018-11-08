@@ -33,7 +33,7 @@ public class TestProducerImpl {
                 .created(new Date())
                 .build();
             messageProducer.sendOrderMessage(orderMessage);
-            receiptProducer.sendMessage("order producer send message: " + i);
+//            receiptProducer.sendMessage("order producer send message: " + i);
         }
     }
 }

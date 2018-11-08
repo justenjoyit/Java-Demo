@@ -29,7 +29,7 @@ public class ShipProducer extends DefaultMQProducer {
         this.shutdown();
     }
 
-    public void sendMessage(String data) throws InterruptedException, RemotingException, MQClientException, MQBrokerException, IOException {
+    public void sendMessage(Object data) throws InterruptedException, RemotingException, MQClientException, MQBrokerException, IOException {
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream(BYTE_SIZE);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArray);
         objectOutputStream.writeObject(data);

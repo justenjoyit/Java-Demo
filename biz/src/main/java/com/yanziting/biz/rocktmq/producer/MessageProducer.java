@@ -1,6 +1,7 @@
 package com.yanziting.biz.rocktmq.producer;
 
 import com.yanziting.biz.rocktmq.task.OrderMessageTask;
+import com.yanziting.biz.rocktmq.task.ReceiptMessageTask;
 import com.yanziting.biz.rocktmq.task.ShipMessageTask;
 
 import java.io.IOException;
@@ -25,13 +26,21 @@ public class MessageProducer {
     private OrderProducer orderProducer;
     @Resource
     private ShipProducer shipProducer;
+    @Resource
+    private ReceiptProducer receiptProducer;
+
     public void sendOrderMessage(Object data) throws InterruptedException, IOException, RemotingException, MQClientException, MQBrokerException {
         OrderMessageTask task = new OrderMessageTask(orderProducer,data);
         task.send();
     }
 
-    public void sendShipMessage(String data) throws InterruptedException, IOException, RemotingException, MQClientException, MQBrokerException {
+    public void sendShipMessage(Object data) throws InterruptedException, IOException, RemotingException, MQClientException, MQBrokerException {
         ShipMessageTask task = new ShipMessageTask(shipProducer,data);
+        task.send();
+    }
+
+    public void sendReceiptMessage(Object data) throws InterruptedException, RemotingException, MQClientException, MQBrokerException, IOException {
+        ReceiptMessageTask task = new ReceiptMessageTask(receiptProducer,data);
         task.send();
     }
 }

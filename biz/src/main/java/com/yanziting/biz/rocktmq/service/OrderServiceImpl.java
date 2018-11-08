@@ -65,6 +65,6 @@ public class OrderServiceImpl {
             .created(new Date())
             .build();
         log.info("ship order {}", shipMessage);
-        messageProducer.sendShipMessage(shipMessage.toString());
+        messageProducer.sendShipMessage(shipMessage);
     }
 }
