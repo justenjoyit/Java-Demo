@@ -1,8 +1,10 @@
 package com.yanziting.web.config;
 
 import com.yanziting.biz.rocktmq.consumer.OrderConsumer;
+import com.yanziting.biz.rocktmq.consumer.ReceiptConsumer;
 import com.yanziting.biz.rocktmq.consumer.ShipConsumer;
 import com.yanziting.biz.rocktmq.listener.OrderBackMessageListener;
+import com.yanziting.biz.rocktmq.listener.ReceiptBackMessageListener;
 import com.yanziting.biz.rocktmq.listener.ShipBackMessageListener;
 
 import java.util.List;
@@ -23,6 +25,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "yanzt.rocketmq")
 @Data
 public class RocketMQConsumerConfiguration {
+
     private String namesrvAddr;
     private List<String> topics;
     private List<String> producerGroups;
@@ -32,8 +35,10 @@ public class RocketMQConsumerConfiguration {
     private OrderBackMessageListener orderBackMessageListener;
     @Resource
     private ShipBackMessageListener shipBackMessageListener;
+    @Resource
+    private ReceiptBackMessageListener receiptBackMessageListener;
 
-    @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
+    @Bean(initMethod = "doStart", destroyMethod = "doShutdown")
     public OrderConsumer orderConsumer() throws MQClientException {
         final OrderConsumer orderConsumer = new OrderConsumer();
         orderConsumer.setNamesrvAddr(namesrvAddr);
@@ -51,5 +56,15 @@ public class RocketMQConsumerConfiguration {
         shipConsumer.setConsumerGroup(consumerGroups.get(1));
         shipConsumer.registerMessageListener(shipBackMessageListener);
         return shipConsumer;
+    }
+
+    @Bean(initMethod = "doStart", destroyMethod = "doShutdown")
+    public ReceiptConsumer receiptConsumer() throws MQClientException {
+        ReceiptConsumer receiptConsumer = new ReceiptConsumer();
+        receiptConsumer.setNamesrvAddr(namesrvAddr);
+        receiptConsumer.setTopic(topics.get(2));
+        receiptConsumer.setConsumerGroup(consumerGroups.get(2));
+        receiptConsumer.registerMessageListener(receiptBackMessageListener);
+        return receiptConsumer;
     }
 }
