@@ -30,8 +30,8 @@ public class RocketMQConfiguration {
     private List<String> producerGroups;
     private List<String> consumerGroups;
 
-    @Resource
-    private OrderBackMessageListener orderBackMessageListener;
+//    @Resource
+//    private OrderBackMessageListener orderBackMessageListener;
 
     @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
     public OrderProducer orderProducer(){
@@ -60,13 +60,13 @@ public class RocketMQConfiguration {
         return receiptProducer;
     }
 
-    @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
-    public OrderConsumer orderConsumer() throws MQClientException {
-        final OrderConsumer orderConsumer = new OrderConsumer();
-        orderConsumer.setNamesrvAddr(namesrvAddr);
-        orderConsumer.setTopic(topics.get(0));
-        orderConsumer.setConsumerGroup(consumerGroups.get(0));
-        orderConsumer.setOrderBackMessageListener(orderBackMessageListener);
-        return orderConsumer;
-    }
+//    @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
+//    public OrderConsumer orderConsumer() throws MQClientException {
+//        final OrderConsumer orderConsumer = new OrderConsumer();
+//        orderConsumer.setNamesrvAddr(namesrvAddr);
+//        orderConsumer.setTopic(topics.get(0));
+//        orderConsumer.setConsumerGroup(consumerGroups.get(0));
+//        orderConsumer.setOrderBackMessageListener(orderBackMessageListener);
+//        return orderConsumer;
+//    }
 }
