@@ -10,13 +10,11 @@ import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.exception.RemotingException;
-import org.springframework.stereotype.Component;
 
 /**
  * @author : Ziting.Yan
  * @since : 2018-11-06-07-24
  **/
-@Component("shipProducer")
 @Setter
 public class ShipProducer extends DefaultMQProducer {
 

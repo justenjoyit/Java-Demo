@@ -1,26 +1,20 @@
 package com.yanziting.biz.rocktmq.listener;
 
-import com.alibaba.fastjson.JSONObject;
 import com.yanziting.biz.rocktmq.message.OrderMessage;
-import com.yanziting.biz.rocktmq.message.ShipMessage;
-import com.yanziting.biz.rocktmq.producer.ShipProducer;
 import com.yanziting.biz.rocktmq.service.OrderServiceImpl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomUtils;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * @author : Ziting.Yan

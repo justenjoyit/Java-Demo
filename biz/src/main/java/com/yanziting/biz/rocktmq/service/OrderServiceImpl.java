@@ -3,7 +3,6 @@ package com.yanziting.biz.rocktmq.service;
 import com.yanziting.biz.rocktmq.message.OrderMessage;
 import com.yanziting.biz.rocktmq.message.ShipMessage;
 import com.yanziting.biz.rocktmq.producer.MessageProducer;
-import com.yanziting.biz.rocktmq.producer.ShipProducer;
 
 import java.io.IOException;
 import java.util.Date;
@@ -24,6 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class OrderServiceImpl {
+
     @Resource
     private MessageProducer messageProducer;
 
@@ -42,13 +42,20 @@ public class OrderServiceImpl {
         log.info("order end .....");
     }
 
+    /**
+     * 卖家备货
+     */
     private void prepare(String orderId) throws InterruptedException {
         log.info("seller is preparing for orderId {}", orderId);
         Thread.sleep(1000);
     }
 
+    /**
+     * 处理订单 --- 下单->备货->发货
+     */
     public void handleOrder(OrderMessage orderMessage) throws InterruptedException, IOException, RemotingException, MQClientException, MQBrokerException {
         order(orderMessage);
+        prepare(orderMessage.getOrderId());
         //发货
         ShipMessage shipMessage = ShipMessage.builder()
             .shipId("S" + RandomUtils.nextLong() + new Date())

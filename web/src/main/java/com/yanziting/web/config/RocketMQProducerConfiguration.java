@@ -1,17 +1,13 @@
 package com.yanziting.web.config;
 
-import com.yanziting.biz.rocktmq.consumer.OrderConsumer;
-import com.yanziting.biz.rocktmq.listener.OrderBackMessageListener;
 import com.yanziting.biz.rocktmq.producer.OrderProducer;
 import com.yanziting.biz.rocktmq.producer.ReceiptProducer;
 import com.yanziting.biz.rocktmq.producer.ShipProducer;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import lombok.Data;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,15 +19,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "yanzt.rocketmq")
 @Data
-public class RocketMQConfiguration {
+public class RocketMQProducerConfiguration {
 
     private String namesrvAddr;
     private List<String> topics;
     private List<String> producerGroups;
     private List<String> consumerGroups;
-
-//    @Resource
-//    private OrderBackMessageListener orderBackMessageListener;
 
     @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
     public OrderProducer orderProducer(){
@@ -59,14 +52,4 @@ public class RocketMQConfiguration {
         receiptProducer.setProducerGroup(producerGroups.get(2));
         return receiptProducer;
     }
-
-//    @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
-//    public OrderConsumer orderConsumer() throws MQClientException {
-//        final OrderConsumer orderConsumer = new OrderConsumer();
-//        orderConsumer.setNamesrvAddr(namesrvAddr);
-//        orderConsumer.setTopic(topics.get(0));
-//        orderConsumer.setConsumerGroup(consumerGroups.get(0));
-//        orderConsumer.setOrderBackMessageListener(orderBackMessageListener);
-//        return orderConsumer;
-//    }
 }

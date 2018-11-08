@@ -1,6 +1,5 @@
 package com.yanziting.biz.rocktmq.task;
 
-import com.yanziting.biz.rocktmq.producer.OrderProducer;
 import com.yanziting.biz.rocktmq.producer.ShipProducer;
 
 import java.io.IOException;

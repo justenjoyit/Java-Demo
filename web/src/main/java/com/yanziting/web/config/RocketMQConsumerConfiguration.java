@@ -2,7 +2,6 @@ package com.yanziting.web.config;
 
 import com.yanziting.biz.rocktmq.consumer.OrderConsumer;
 import com.yanziting.biz.rocktmq.listener.OrderBackMessageListener;
-import com.yanziting.biz.rocktmq.producer.OrderProducer;
 
 import java.util.List;
 
@@ -29,15 +28,6 @@ public class RocketMQConsumerConfiguration {
 
     @Resource
     private OrderBackMessageListener orderBackMessageListener;
-
-//    @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
-//    public OrderProducer orderProducer(){
-//        OrderProducer orderProducer = new OrderProducer();
-//        orderProducer.setNamesrvAddr(namesrvAddr);
-//        orderProducer.setTopic(topics.get(0));
-//        orderProducer.setProducerGroup(producerGroups.get(0));
-//        return orderProducer;
-//    }
 
     @Bean(initMethod = "doStart",destroyMethod = "doShutdown")
     public OrderConsumer orderConsumer() throws MQClientException {

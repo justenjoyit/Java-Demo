@@ -3,9 +3,7 @@ package com.yanziting.biz.rocktmq;
 import com.google.common.collect.Lists;
 import com.yanziting.biz.rocktmq.message.OrderMessage;
 import com.yanziting.biz.rocktmq.producer.MessageProducer;
-import com.yanziting.biz.rocktmq.producer.OrderProducer;
 import com.yanziting.biz.rocktmq.producer.ReceiptProducer;
-import com.yanziting.biz.rocktmq.producer.ShipProducer;
 
 
 import java.util.Date;
@@ -22,10 +20,6 @@ import org.springframework.stereotype.Service;
 public class TestProducerImpl {
 
     @Resource
-    private OrderProducer orderProducer;
-//    @Resource
-//    private ShipProducer shipProducer;
-    @Resource
     private ReceiptProducer receiptProducer;
     @Resource
     private MessageProducer messageProducer;
@@ -39,7 +33,6 @@ public class TestProducerImpl {
                 .created(new Date())
                 .build();
             messageProducer.sendOrderMessage(orderMessage);
-//            shipProducer.sendMessage("order producer send message: " + i);
             receiptProducer.sendMessage("order producer send message: " + i);
         }
     }
